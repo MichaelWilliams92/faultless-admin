@@ -11,9 +11,12 @@
       $lastName = mysqli_real_escape_string($connect, $data->lastName);
       $email = mysqli_real_escape_string($connect, $data->email);
       $phoneNumber = mysqli_real_escape_string($connect, $data->phoneNumber);
+      $Ext = mysqli_real_escape_string($connect, $data->Ext);
+      $CompanyNumber = mysqli_real_escape_string($connect, $data->CompanyNumber);
       $website = mysqli_real_escape_string($connect, $data->website);
       $pic = mysqli_real_escape_string($connect, $data->pic);
-      $query = "INSERT INTO company VALUES ('$username', '$companyName', '$location', '$firstName', '$lastName', '$email', '$phoneNumber', '0', '$website', '$pic', '30/09/2019')";  
+
+      $query = "INSERT INTO company VALUES ('$username', '$companyName', '$location', '$firstName', '$lastName', '$email', '$phoneNumber', '0', '$Ext', '$CompanyPhone' '$website', '$pic', '30/09/2019')";  
       if(mysqli_query($connect, $query))  
       {  
            echo "Data Inserted...";  

@@ -13,49 +13,13 @@
     </head>
 
   <body> -->
-    <div ng-init="init('ID432223')"></div>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Faultless Hoses</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#/!">Dashboard<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#!profile">Company Profile<span class="sr-only">(current)</span></a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li> -->
-      </ul>
-
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+    <div ng-init="init()"></div>
 
     <header id="header">
       <div class="container my-container mt-5">
         <div class="row">
           <div class="col-12 my-col">
-            <h1>Jacob</h1>
+            <h1>{{names[0].FirstName}} {{names[0].LastName}}</h1>
           </div>
         </div>
         <!-- container for details/profile container -->
@@ -63,10 +27,10 @@
           <div class="col-3 my-col">
             <nav class="nav-sidebar">
           		<ul class="nav tabs">
-                <li class="active"> <a ng-click="tab1()">Personal Information</a></li>
-                <li class=""> <a ng-click="tab2()">Password and Security</a></li>
-                <li class=""><a href="#tab3" data-toggle="tab">Profile Photo</a></li>
-                <li class=""><a href="#tab4" data-toggle="tab">Company Information/Location</a></li>
+                <li class="active" name="personal_information" ng-click="name = 'personal_information'">Personal Information</li>
+                <li class="" name="security" ng-click="name = 'security'">Password and Security</li>
+                <li class="" name='photo' ng-click="name = 'photo'">Profile Photo</li>
+                <li class="" name="location" ng-click="name = 'location'">Company Information/Location</li>
           		</ul>
 	           </nav>
           </div>
@@ -74,7 +38,10 @@
           <div class="col-9 my-col">
             <div class="tab-content">
               <!-- tab one -->
-              <div class="tab-pane active text-style" id="tab1">
+            <form name="toggle" action="/functions/uploadProfilePic.php" target="_blank" method="POST" enctype="multipart/form-data">
+            <div ng-switch="name">
+
+              <div class="tab-pane active text-style" id="tab1" ng-switch-default="personal_information">
                 <div class="row my-row">
                   <div class="col-12 my-col">
                     <h3>Personal Information</h3>
@@ -86,38 +53,20 @@
                     <b>name:</b>
                   </div>
                   <div class="col-3 my-col">
-                    <input class="form-control mr-sm-2" type="text" placeholder="First Name" aria-label="firstname" value={{names[0].FirstName}}>
+                    <input class="form-control mr-sm-2" type="text" placeholder="First Name" aria-label="firstname" id="FirstName" value={{names[0].FirstName}} readOnly>
                   </div>
 
                   <div class="col-3 my-col">
-                    <input class="form-control mr-sm-4" type="text" placeholder="Last Name" aria-label="lastname" value={{names[0].LastName}}>
+                    <input class="form-control mr-sm-4" type="text" placeholder="Last Name" aria-label="lastname" id=LastName value={{names[0].LastName}} readOnly>
                   </div>
                 </div>
 
                 <div class="row my-row">
                   <div class="col-2 my-col">
-                    <b>website:</b>
-                  </div>
-                  <div class="col-6 my-col">
-                    <input class="form-control mr-sm-2" type="text" placeholder="www.example.com" aria-label="website" value={{names[0].Website}}>
-                  </div>
-                </div>
-
-                <div class="row my-row">
-                  <div class="col-2 my-col">
-                    <b>Date of Birth:</b>
-                  </div>
-                  <div class="col-6 my-col">
-                    <input class="form-control mr-sm-2" type="text" placeholder="DD/MM/YYYY" aria-label="dob" readonly>
-                  </div>
-                </div>
-
-                <div class="row my-row">
-                  <div class="col-2 my-col">
-                    <b>Telephone:</b>
+                    <b>Personal Contact:</b>
                   </div>
                   <div class="col-3 my-col">
-                    <input class="form-control mr-sm-2" type="text" placeholder="(   )" aria-label="telephone" value={{names[0].Phone}}>
+                    <input class="form-control mr-sm-2" type="text" placeholder="(   )" aria-label="telephone" id="PersonalPhone" value={{names[0].PersonalPhone}} readOnly>
                   </div>
 
                   <div class="col-1 my-col">
@@ -125,7 +74,7 @@
                   </div>
 
                   <div class="col-2  my-col">
-                    <input class="form-control mr-sm-4" type="text" placeholder="Ext." aria-label="extension">
+                    <input class="form-control mr-sm-4" type="text" placeholder="Ext." aria-label="extension" id="Ext" value={{names[0].Ext}} readOnly>
                   </div>
                 </div>
 
@@ -134,7 +83,7 @@
                     <b>Email:</b>
                   </div>
                   <div class="col-6 my-col">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="email" value={{names[0].Email}}>
+                    <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="email" id="Email" value={{names[0].Email}} readOnly>
                   </div>
                 </div>
 
@@ -143,37 +92,146 @@
                     <b># of Hoses:</b>
                   </div>
                   <div class="col-6 my-col">
-                    <input class="form-control mr-sm-2" type="text" placeholder="0" aria-label="hosenum" value={{names[0].NumberOfHoses}}>
+                    <input class="form-control mr-sm-2" type="text" placeholder="0" aria-label="hosenum" id="hose#" value={{names[0].NumberOfHoses}} readOnly>
                   </div>
                 </div>
 
                 <div class="row my-row">
                   <div class="col-8 my-col">
                     <hr>
-                    <button type="button" class="btn btn-light">Cancel</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-light" ng-click="toggle1()">toggle</button>
+                    <button type="button" class="btn btn-primary" ng-click='updatePersonalInfo()'>Save</button>
                   </div>
                 </div>
               </div>
               <!-- tab two -->
-              <div class="tab-pane text-style" id="tab2">
-                <h2>Password and Security</h2>
-                 <p>Dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                  ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              <!-- <form action="/functions/uploadProfilePic.php" target="_blank" method="POST" enctype="multipart/form-data"> -->
+                 
+              <div class="tab-pane text-style" id="tab2" ng-switch-when="security">
+                <h2>Reset Your Password</h2>
+                <p>Put information regarding changing password here</p>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Username</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="text" placeholder="www.example.com" aria-label="website" value={{pw[0].Username}} id="UserID" name="UserID" readonly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Current Password</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="password" placeholder="www.example.com" aria-label="website" id="pw" readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>New Password</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="password" placeholder="www.example.com" aria-label="website" id="newpw" readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Re-type new Password</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="password" placeholder="www.example.com" aria-label="website" id="newpw2" readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-8 my-col">
+                    <hr>
+                    <button type="button" class="btn btn-light" ng-click="toggle1()">Toggle</button>
+                    <button type="button" class="btn btn-primary" ng-click="updatePassword()">Save</button>
+                  </div>
+                </div>
+
+                  
+
               </div>
               <!-- tab three -->
-              <div class="tab-pane text-style" id="tab3">
+              <div class="tab-pane text-style" id="tab3" ng-switch-when="photo">
                 <h2>Profile Photo</h2>
-                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla
-                  facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                  augue duis dolore te feugait nulla facilisi.</p>
+                <p>Insert new profile picture using the link below,</p>
+                <img ng-src="{{img}}" class="img-responsive">
+                <p>{{next}} should be above here</p>
+                  <!-- <form action="/functions/upload.php" target="_blank" method="POST" enctype="multipart/form-data"> -->
+                       <input type="hidden" id="pic" name="pic" value="{{pw[0].Username}}">
+                        <input type="file" name="file" id="file" class="">
+                        <button name="submit" type="submit" ng-click="updatePic()">Upload</button>
+                  <!-- </form> -->
               </div>
+              <!-- </form> -->
               <!-- tab four -->
-              <div class="tab-pane text-style" id="tab4">
-                <h2>Company Information/Location</h2>
-                <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+              <div class="tab-pane text-style" id="tab4" ng-switch-when="location">
+                <h2>Company Information</h2>
+                
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Company name</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="text" placeholder="www.example.com" aria-label="website" id="CompanyName" value={{names[0].CompanyName}} readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Branch Location</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="text" placeholder="www.example.com" aria-label="website" id="Location" value={{names[0].Location}} readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Company Contact Number</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="text" placeholder="www.example.com" aria-label="website" id="CompanyPhone" value={{names[0].CompanyPhone}} readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Website</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="text" placeholder="www.example.com" aria-label="website" id="Website" value={{names[0].Website}} readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-2 my-col">
+                    <b>Member Since</b>
+                  </div>
+                  <div class="col-6 my-col">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Date Joined" aria-label="website" id="DateJoined" value={{names[0].DateJoined}} readOnly>
+                  </div>
+                </div>
+
+                <div class="row my-row">
+                  <div class="col-8 my-col">
+                    <hr>
+                    <button type="button" class="btn btn-light" ng-click="toggle1()">toggle</button>
+                    <button ng-click="updateCompanyInfo()" type="button" class="btn btn-primary">Save</button>
+                  </div>
+                </div>
+
               </div>
             </div>
+            </div>
+            </form>
           </div>
         </div>
       </div>

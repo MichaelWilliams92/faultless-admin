@@ -9,7 +9,7 @@ $hoseType = mysqli_real_escape_string($connect, $data->hoseType);
 // $idd = mysqli_real_escape_string($connect, 'ID432223');
 
  $output = array();  
- $query = "SELECT * FROM product AS P INNER JOIN hose AS H ON P.hoseType = H.hoseType WHERE P.hoseType='$hoseType' AND P.Username='$id_num'";
+ $query = "SELECT * FROM product AS P INNER JOIN hose AS H ON P.HoseType = H.HoseType WHERE P.HoseType='$hoseType' AND P.Username='$id_num'";
  
   //Username='$id_num' GROUP BY ProductID";  
  //$query = "SELECT * FROM product";  

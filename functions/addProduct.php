@@ -10,8 +10,7 @@
       $orderNum = mysqli_real_escape_string($connect, $data->orderNum);
       $part = mysqli_real_escape_string($connect, $data->part);
       $fittings = mysqli_real_escape_string($connect, $data->fittings);
-      $lastInspection = mysqli_real_escape_string($connect, $data->lastInspection);
-      $nextInspection = mysqli_real_escape_string($connect, $data->nextInspection);
+      $testDate = mysqli_real_escape_string($connect, $data->testDate);
       $testedBy = mysqli_real_escape_string($connect, $data->testedBy);
       $type = mysqli_real_escape_string($connect, $data->type);
       $pressure = mysqli_real_escape_string($connect, $data->pressure);
@@ -21,7 +20,7 @@
       $crn = mysqli_real_escape_string($connect, $data->crn);
       $inService = mysqli_real_escape_string($connect, $data->inService);
 
-      $query = "INSERT INTO product VALUES ('$productID', '$PRusername', '$customerPO', '$orderNum', '$part', '$fittings', '$lastInspection', '$nextInspection', '$testedBy', '$type', '$pressure', '$diameter', '$length', '$temperature', '$crn', '$inService')";  
+      $query = "INSERT INTO product VALUES ('$productID', '$PRusername', '$customerPO', '$orderNum', '$part', '$fittings', '$testDate', '$testedBy', '$type', '$pressure', '$diameter', '$length', '$temperature', '$crn', '$inService')";  
       if(mysqli_query($connect, $query))  
       {  
            echo "Data Inserted...";  

@@ -1,4 +1,4 @@
-+ <?php  
+<?php  
  //insert.php  
  $connect = mysqli_connect("localhost", "root", "20152maW", "Faultless");  
  $data = json_decode(file_get_contents("php://input"));  
