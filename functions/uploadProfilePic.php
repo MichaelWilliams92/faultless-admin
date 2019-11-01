@@ -31,6 +31,27 @@ if(isset($_POST['submit'])){
                     
                     $fileDestination = 'uploads/'.$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
+
+                    $connect = mysqli_connect("localhost", "root", "20152maW", "Faultless");  
+                    $data = json_decode(file_get_contents("php://input"));  
+                    //if(count($data) > 0)  
+                    //{  
+                       // $Username = mysqli_real_escape_string($connect, $data->Username); 
+                       // $Pic = mysqli_real_escape_string($connect, $data->Pic);           
+                    
+                            $query = "UPDATE company SET Pic = '$img' WHERE Username = '$username'";  
+                            if(mysqli_query($connect, $query))  
+                            {  
+                                    echo 'Data Updated...';  
+                            }  
+                            else  
+                            {  
+                                    echo 'Error';  
+                            }  
+                            
+                   // }  
+
+
                    // header("Location: index.php?uploadsuccess");
                 } else {
                     echo "Your file is too big!";

@@ -13,7 +13,7 @@
     </head>
 
   <body> -->
-  <div ng-init="init('ID432223', 'PSP')"></div>
+  <div ng-init="init()"></div>
 
     <header id="header">
       <div class="container my-container mt-5">
@@ -23,7 +23,6 @@
           </div>
             <div class="col-3 my-col">
             <button type="button" class="btn btn-light">toggle</button>
-            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Generate Certificate</button> -->
             <button type="button" ng-click="generate()">Generate Certificate</button>
           </div>
         </div>
@@ -48,6 +47,7 @@
               <li>{{temp}}</li>
               <li>{{crn}}</li>
               <li>{{inService}}</li>
+              <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit info</button></li>
             </ul>
            <!-- <h3 class ="details">Testing:</h3> 
             <ul>
@@ -141,38 +141,44 @@
               </button>
             </div>
             <div class="modal-body">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th scope="col">Product ID</th>
-                  <th scope="col">Order Number</th>
-                  <th scope="col">Customer PO</th>
-                  <th scope="col">Part</th>
-                  <th scope="col">Tested By</th>
-                  <!-- <th scope="col">Date of test</th> -->
-                  <th scope="col">Checked</th>
-                </tr>
-                
-                </thead>
-                <tbody id="checkboxes">
-                <tr ng-repeat='a in names'>
 
-                  <th scope="row" id="{{$index}}" data-ng-click="details($index)">{{a.ProductID}}</th>
+                <div class="row my-row">
+                    <div class="col-2 my-col">
+                      <b>Customer PO</b>
+                    </div>
+                    <div class="col-10 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="crnnumber" id='PO' value="{{customerPO}}">
+                    </div>
+                </div>
+                <div class="row my-row">
+                    <div class="col-2 my-col">
+                      <b>New Test Date</b>
+                    </div>
+                    <div class="col-10 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="crnnumber" id='testDate' value="{{testDate}}">
+                    </div>
+                </div>
+                <div class="row my-row">
+                    <div class="col-2 my-col">
+                      <b>Tested By</b>
+                    </div>
+                    <div class="col-10 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="crnnumber" id='Tester' value="{{testedBy}}">
+                    </div>
+                </div>
+                <div class="row my-row">
+                    <div class="col-2 my-col">
+                      <b>In Service?</b>
+                    </div>
+                    <div class="col-10 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="crnnumber" id='inService' value="{{inService}}">
+                    </div>
+                </div>
 
-                  
-                    <td>{{a.OrderNum}}</td>
-                    <td>{{a.CustomerPO}}</td>
-                    <td>{{a.Part}}</td>
-                    <td>{{a.TestedBy}}</td>
-                    <!-- <td>{{a.testDate}}</td> -->
-                    <td><input type="checkbox"></td>
-                  
-                </tr>
-                </tbody>
-              </table>
+
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Generate</button>
+              <button type="button" class="btn btn-primary" ng-click="update()">Update</button>
             </div>
           </div>
         </div>

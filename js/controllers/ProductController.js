@@ -2,7 +2,7 @@ app.controller('ProductController', function($scope, $http, transferService) {
   $scope.title= "This is the main screen of the App try this";
   $scope.next= "This is the next line";
 
-  $scope.init = function(id, hoseType){
+  $scope.init = function(){
     //$scope.id = id;
      // $route.reload();
        $scope.hoseType = transferService.getHoseType();
@@ -86,6 +86,8 @@ app.controller('ProductController', function($scope, $http, transferService) {
       alert("comments displayed");
     });
 
+    transferService.setProductID($scope.productID);
+
   }
 
   $scope.addComment = function(){
@@ -125,6 +127,31 @@ app.controller('ProductController', function($scope, $http, transferService) {
     // for (y = 0; y < indexes.length; y++){
     //   alert($scope.names[indexes[y]].ProductID);
     // }
+
+  }
+
+  $scope.update = function() {
+
+    var ProductID = transferService.getProductID();
+    var PO = document.getElementById('PO').value;
+    var testDate = document.getElementById('testDate').value;
+    var tester = document.getElementById('Tester').value;
+    var inService = document.getElementById('inService').value;
+
+    $http.post("functions/updateProduct.php", {'ProductID':ProductID, 'PO':PO, 'testDate':testDate, 'tester':tester, 'inService':inService}).then(function(response){  
+     
+     //$scope.details($scope.currentIndex);
+     alert(response.data);
+    //  document.getElementById('PO').value="";
+    //  document.getElementById('testDate').value="";
+    //  document.getElementById('Tester').value="";
+    //  document.getElementById('inService').value="";
+     $scope.init();
+    });
+
+
+
+    //
 
   }
 

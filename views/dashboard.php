@@ -567,7 +567,7 @@
                         <img src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no" class="picture-src" id="wizardPicturePreview" title="">
                         <!-- <form action="/functions/upload.php" target="_blank" method="POST" enctype="multipart/form-data"> -->
                         <input type="file" name="file" id="file" class="">
-                        <button name="submit" type="submit" ng-click="addHose()">Upload</button>
+                        <button name="submit" type="submit">Upload</button>
                         <!-- </form> -->
                         
                     </div>
@@ -583,20 +583,13 @@
                       <input class="form-control mr-sm-2" name="hoseType" type="text" placeholder="newHose" aria-label="crnnumber" id='newHose'>
                     </div>
                   </div>
-                  <div class="row my-row">
-                    <div class="col-2 my-col">
-                      <b>url</b>
-                    </div>
-                    <div class="col-10 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="url" aria-label="licensenum" id='url'>
-                    </div>
-                  </div>
+            
                   <div class="row my-row">
                     <div class="col-2 my-col">
                       <b>description</b>
                     </div>
                     <div class="col-10 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="description" aria-label="ordernum" id='description'>
+                      <input class="form-control mr-sm-2" name="description" type="text" placeholder="description" aria-label="ordernum" id='description'>
                     </div>
                   </div>
                   </div>
