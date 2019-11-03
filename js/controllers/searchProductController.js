@@ -1,4 +1,4 @@
-app.controller('searchProductController', function($scope, $http, transferService) {
+app.controller('searchProductController', function($scope, $http, $location, transferService) {
   $scope.title= "This is the main screen of the App try this";
   $scope.next= "This is the next line";
   $scope.hiddenButton = true;
@@ -55,15 +55,44 @@ app.controller('searchProductController', function($scope, $http, transferServic
      var OrderNum = "%".concat(document.getElementById('OrderNum').value, "%"); 
      var Part = "%".concat(document.getElementById('Part').value, "%"); 
      var Fittings = "%".concat(document.getElementById('Fittings').value, "%"); 
-     var testDate = "%".concat(document.getElementById('testDate').value, "%"); 
+     //var testDate = "%".concat(document.getElementById('testDate').value, "%"); 
      var TestedBy = "%".concat(document.getElementById('TestedBy').value, "%"); 
      var HoseType = "%".concat(document.getElementById('HoseType').value, "%"); 
-     var Pressure = "%".concat(document.getElementById('Pressure').value, "%"); 
-     var HoseDiameter = "%".concat(document.getElementById('HoseDiameter').value, "%"); 
-     var HoseLength = "%".concat(document.getElementById('HoseLength').value, "%"); 
-     var Temperature = "%".concat(document.getElementById('Temperature').value, "%"); 
+    // var Pressure = "%".concat(document.getElementById('Pressure').value, "%"); 
+    // var HoseDiameter = "%".concat(document.getElementById('HoseDiameter').value, "%"); 
+    // var HoseLength = "%".concat(document.getElementById('HoseLength').value, "%"); 
+    // var Temperature = "%".concat(document.getElementById('Temperature').value, "%"); 
      var CRN = "%".concat(document.getElementById('CRN').value, "%"); 
      var InService = "%".concat(document.getElementById('InService').value, "%"); 
+
+     
+
+     var fromPressure = document.getElementById('fromPressure').value;
+     if(fromPressure == "") {fromPressure = '0'};
+     var toPressure = document.getElementById('toPressure').value;
+     if(toPressure == "") {toPressure = '99999'};
+     
+     var fromDiameter = document.getElementById('fromDiameter').value;
+     if(fromDiameter  == "") {fromDiameter = '0'};
+     var toDiameter  = document.getElementById('toDiameter').value;
+     if(toDiameter  == "") {toDiameter  = '1000'};
+
+     var fromLength = document.getElementById('fromLength').value;
+     if(fromLength == "") {fromLength = '0'};
+     var toLength = document.getElementById('toLength').value;
+     if(toLength == "") {toLength = '1000'};
+
+     var fromTemp = document.getElementById('fromTemp').value;
+     if(fromTemp == "") {fromTemp = '0'};
+     var toTemp = document.getElementById('toTemp').value;
+     if(toTemp == "") {toTemp = '1000'} ;
+
+     //alert("OK");
+
+     var fromDate = document.getElementById('fromDate').value;
+     if(fromDate == "") {fromDate = "1900-01-01 00:00:00"} else {fromDate = fromDate.concat(" 00:00:00")};
+     var toDate = document.getElementById('toDate').value;
+     if(toDate == "") {toDate = "2099-12-30 23:59:59"} else {toDate = toDate.concat(" 23:59:59")};
 
     if (ProductID == ""){ProductID = "%"};
     if (Username == ""){Username = "%"};
@@ -71,18 +100,19 @@ app.controller('searchProductController', function($scope, $http, transferServic
     if (OrderNum == ""){OrderNum = "%"};
     if (Part == ""){Part = "%"};
     if (Fittings == ""){Fittings = "%"};
-    if (testDate == ""){testDate = "%"};
+    //if (testDate == ""){testDate = "%"};
     if (TestedBy == ""){TestedBy = "%"};
     if (HoseType == ""){HoseType = "%"};
-    if (Pressure == ""){Pressure = "%"};
-    if (HoseDiameter == ""){HoseDiameter = "%"};
-    if (HoseLength == ""){HoseLength = "%"};
-    if (Temperature == ""){Temperature = "%"};
+   // if (Pressure == ""){Pressure = "%"};
+   // if (HoseDiameter == ""){HoseDiameter = "%"};
+   // if (HoseLength == ""){HoseLength = "%"};
+   // if (Temperature == ""){Temperature = "%"};
     if (CRN == ""){CRN = "%"};
     if (InService == ""){InService = "%"};
 
+   // alert("UE");
 
-     $http.post("functions/searchProduct.php", {'ProductID':ProductID, 'Username':Username, 'CustomerPO':CustomerPO, 'OrderNum':OrderNum, 'Part':Part, 'Fittings':Fittings, 'testDate':testDate, 'TestedBy':TestedBy, 'HoseType':HoseType, 'Pressure':Pressure, 'HoseDiameter':HoseDiameter, 'HoseLength':HoseLength, 'Temperature':Temperature, 'CRN':CRN, 'InService':InService}).then(function(response){  
+     $http.post("functions/searchProduct.php", {'ProductID':ProductID, 'Username':Username, 'CustomerPO':CustomerPO, 'OrderNum':OrderNum, 'Part':Part, 'Fittings':Fittings, 'TestedBy':TestedBy, 'HoseType':HoseType, 'fromPressure':fromPressure,'toPressure':toPressure, 'fromTemp':fromTemp, 'toTemp':toTemp, 'fromLength':fromLength, 'toLength':toLength, 'fromDiameter':fromDiameter, 'toDiameter':toDiameter, 'CRN':CRN, 'InService':InService, 'fromDate':fromDate, 'toDate':toDate}).then(function(response){  
          
         $scope.names = response.data;
         alert($scope.names); 
@@ -92,6 +122,7 @@ app.controller('searchProductController', function($scope, $http, transferServic
   };
 
   $scope.details = function(index) {
+    alert("Details have been loaded.  Please click on details tab to view info");
     $scope.hideButton="false";
      $scope.productID = $scope.names[index].ProductID;
       $scope.username = $scope.names[index].Username;
@@ -139,6 +170,15 @@ app.controller('searchProductController', function($scope, $http, transferServic
 
      //alert(transferService.getHoseType());
      //alert(transferService.getUsername());
+     
+  }
+
+  $scope.nextScreen = function(index){
+    transferService.setHoseType($scope.names[index].HoseType);
+    transferService.setUsername($scope.names[index].Username);
+    transferService.setProductID($scope.names[index].ProductID);
+    alert(transferService.getUsername());
+    $location.path('/product');
   }
 
   $scope.myFunction = function() {

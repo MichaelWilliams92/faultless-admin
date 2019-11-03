@@ -108,6 +108,7 @@ app.controller('ProductController', function($scope, $http, transferService) {
     //ar indexes = [];
     var productIDs = [];
     
+    
     // $scope('#checkboxes input:checked').each(function () {
     //     selected.push($(this).attr('id'));
     // });
@@ -116,6 +117,11 @@ app.controller('ProductController', function($scope, $http, transferService) {
         productIDs.push($scope.names[x].ProductID);
       }
     };
+
+    if(productIDs.length == 0){
+      alert("No items selected!  Please check at least one item.");
+      return;
+  }
 
       alert(productIDs);
       //Once certificate is actually created, we will take the productIDs array and add it to our service

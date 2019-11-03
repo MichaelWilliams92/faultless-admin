@@ -15,11 +15,13 @@
       $CompanyPhone = mysqli_real_escape_string($connect, $data->CompanyPhone);
       $NumberOfHoses = mysqli_real_escape_string($connect, $data->NumberOfHoses);
       $Website = mysqli_real_escape_string($connect, $data->Website); //
-      $DateJoined = mysqli_real_escape_string($connect, $data->DateJoined); //
+      $fromDate = mysqli_real_escape_string($connect, $data->fromDate); //
+      $toDate = mysqli_real_escape_string($connect, $data->toDate); //
+      //$DateJoined = mysqli_real_escape_string($connect, $data->DateJoined); //
 
      // $query = "SELECT * FROM product WHERE ProductID LIKE '$ProductID' AND Username LIKE '$Username' AND CustomerPO LIKE '$CustomerPO' AND OrderNum LIKE '$OrderNum' AND Part LIKE '$Part' AND Fittings LIKE '$Fittings' AND testDate LIKE '$TestDate' AND TestedBy LIKE '$TestedBy' AND HoseType LIKE '$HoseType' AND Pressure LIKE '$Pressure' AND HoseDiameter LIKE '$HoseDiameter' AND HoseLength LIKE '$HoseLength' AND Temperature LIKE '$Temperature' AND CRN LIKE '$CRN' AND InService LIKE '$InService' ";  
      //$query = "SELECT * FROM product WHERE ProductID LIKE '$ProductID' AND Username LIKE '$Username' AND CustomerPO LIKE '$CustomerPO' AND OrderNum LIKE '$OrderNum' AND Part LIKE '$Part' AND Fittings LIKE '$Fittings' AND testDate LIKE '$testDate' AND TestedBy LIKE '$TestedBy' AND HoseType LIKE '$HoseType' AND Pressure LIKE '$Pressure' AND HoseDiameter LIKE '$HoseDiameter' AND HoseLength LIKE '$HoseLength' AND Temperature LIKE '$Temperature' AND CRN LIKE '$CRN' AND InService LIKE '$InService' ";
-     $query = "SELECT * FROM company WHERE CompanyName LIKE '$CompanyName' AND Username LIKE '$Username' AND Location LIKE '$Location' AND FirstName LIKE '$FirstName' AND LastName LIKE '$LastName' AND Email LIKE '$Email' AND PersonalPhone LIKE '$PersonalPhone' AND Ext LIKE '$Ext' AND CompanyPhone LIKE '$CompanyPhone' AND NumberOfHoses LIKE '$NumberOfHoses' AND Website LIKE '$Website' AND DateJoined LIKE '$DateJoined' ORDER BY DateJoined DESC ";
+     $query = "SELECT * FROM company WHERE CompanyName LIKE '$CompanyName' AND Username LIKE '$Username' AND Location LIKE '$Location' AND FirstName LIKE '$FirstName' AND LastName LIKE '$LastName' AND Email LIKE '$Email' AND PersonalPhone LIKE '$PersonalPhone' AND Ext LIKE '$Ext' AND CompanyPhone LIKE '$CompanyPhone' AND NumberOfHoses LIKE '$NumberOfHoses' AND Website LIKE '$Website' AND DateJoined >= '$fromDate' AND DateJoined <= '$toDate' ORDER BY DateJoined DESC ";
 
      $result = mysqli_query($connect, $query);  
 

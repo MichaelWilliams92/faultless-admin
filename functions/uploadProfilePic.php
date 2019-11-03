@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
                             $query = "UPDATE company SET Pic = '$img' WHERE Username = '$username'";  
                             if(mysqli_query($connect, $query))  
                             {  
-                                    echo 'Data Updated...';  
+                                echo "Data Inserted...";  
                             }  
                             else  
                             {  

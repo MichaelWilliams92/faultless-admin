@@ -19,11 +19,30 @@
       $temperature = mysqli_real_escape_string($connect, $data->temperature);
       $crn = mysqli_real_escape_string($connect, $data->crn);
       $inService = mysqli_real_escape_string($connect, $data->inService);
+      $timestamp = date("Y-m-d H:i:s");
+      $timestamp = mysqli_real_escape_string($connect, $timestamp);
 
-      $query = "INSERT INTO product VALUES ('$productID', '$PRusername', '$customerPO', '$orderNum', '$part', '$fittings', '$testDate', '$testedBy', '$type', '$pressure', '$diameter', '$length', '$temperature', '$crn', '$inService')";  
+     //  echo $productID;
+     //  echo $PRusername;
+     //  echo $customerPO;
+     //  echo $orderNum;
+     //  echo $part;
+     //  echo $fittings;
+     //  echo $testDate;
+     //  echo $testedBy;
+     //  echo $type;
+     //  echo $pressure;
+     //  echo $diameter;
+     //  echo $length;
+     //  echo $temperature;
+     //  echo $crn;
+     //  echo $inService;
+     //  echo $timestamp;
+
+      $query = "INSERT INTO product VALUES ('$productID', '$PRusername', '$customerPO', '$orderNum', '$part', '$fittings', '$testDate', '$timestamp','$testedBy', '$type', '$pressure', '$diameter', '$length', '$temperature', '$crn', '$inService')";  
       if(mysqli_query($connect, $query))  
       {  
-           echo "Data Inserted...";  
+           echo "Data Inserted";  
       }  
       else  
       {  

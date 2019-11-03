@@ -294,12 +294,14 @@
               </button>
             </div>
             <div class="modal-body">
+            <form action="functions/updateCompanyPic.php" target="_blank" method="POST" enctype="multipart/form-data">
               <div class="row my-row">
                 <div class="col-3 my-col">
                   <div class="picture-container">
                     <div class="picture">
                         <img src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no" class="picture-src" id="wizardPicturePreview" title="">
-                        <input type="file" id="wizard-picture" class="">
+                        <input type="file" name="file2" id="file2" class="">
+                        <button name="submit2" type="submit">Upload</button>
                     </div>
                       <b class="">Choose Picture</b>
                   </div>
@@ -310,7 +312,7 @@
                       <b>Username</b>
                     </div>
                     <div class="col-10 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="crnnumber" id='username'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Username" name="Username" aria-label="crnnumber" id='username'>
                     </div>
                   </div>
                   <div class="row my-row">
@@ -318,13 +320,13 @@
                       <b>Company Name</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Company Name" aria-label="licensenum" id='CompanyName'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Company Name" name="CompanyName" aria-label="licensenum" id='CompanyName'>
                     </div>
                     <div class="col-2 my-col">
                       <b>Location:</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Location" aria-label="ordernum" id='location'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Location" name="Location" aria-label="ordernum" id='location'>
                     </div>
                   </div>
                   <div class="row my-row">
@@ -332,13 +334,13 @@
                       <b>First Name</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="First Name" aria-label="hosepressure" id='firstName'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="First Name" name="firstName" aria-label="hosepressure" id='firstName'>
                     </div>
                     <div class="col-2 my-col">
                       <b>Last Name</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Last Name" aria-label="temprange" id='lastName'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Last Name" name="lastName" aria-label="temprange" id='lastName'>
                     </div>
                   </div>
                   <div class="row my-row">
@@ -346,27 +348,27 @@
                       <b>Email</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="testname" id='email'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Email" name="email" aria-label="testname" id='email'>
                     </div>
                     <div class="col-2 my-col">
                       <b>Phone number</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Phone Number" aria-label="temprange" id='phoneNumber'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Phone Number" name="phone" aria-label="temprange" id='phoneNumber'>
                     </div>
                   </div>
                   <div class="col-2 my-col">
                       <b>Ext.</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Extension" aria-label="temprange" id='Ext'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Extension" name="ext" aria-label="temprange" id='Ext'>
                     </div>
                   </div>
                   <div class="col-2 my-col">
                       <b>Company phone number</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Cpmpany Phone Number" aria-label="temprange" id='CompanyNumber'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Cpmpany Phone Number" name="companyPhone" aria-label="temprange" id='CompanyNumber'>
                     </div>
                   </div>
                   <div class="row myrow">
@@ -374,15 +376,10 @@
                       <b>Website</b>
                     </div>
                     <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Website" aria-label="temprange" id='website'>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Website" name="website" aria-label="temprange" id='website'>
                     </div>
                   </div>
-                  <div class="col-2 my-col">
-                      <b>Profile Pic</b>
-                    </div>
-                    <div class="col-4 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Profile Pic" aria-label="temprange" id='pic'>
-                    </div>
+                 
                   </div>
                 </div>
                     <!-- <div class="col-5 my-col">
@@ -394,6 +391,7 @@
               <button type="button" class="btn btn-secondary">Add Another</button>
               <button type="button" class="btn btn-primary" ng-click='addCompany()'>Add</button>
             </div>
+            </form>
           </div>
         </div>
       </div>
@@ -583,7 +581,7 @@
                       <input class="form-control mr-sm-2" name="hoseType" type="text" placeholder="newHose" aria-label="crnnumber" id='newHose'>
                     </div>
                   </div>
-            
+          
                   <div class="row my-row">
                     <div class="col-2 my-col">
                       <b>description</b>

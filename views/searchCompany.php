@@ -42,8 +42,9 @@
                   <th scope="col">Company Location</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
-                  <th scope="col">Website</th>
+                  <!-- <th scope="col">Website</th> -->
                   <th scope="col">Contact Number</th>
+                  <th scope="col">Profile link</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,10 +52,11 @@
                 <tr ng-repeat="a in names">
                             <th scope="row" id="{{$index}}" data-ng-click="details($index)" >{{a.CompanyName}}</th>
                             <td>{{a.Location}}</td>
-                            <td>{{a.LastName}}</td>
+                            <td>{{a.LastName}}, {{a.FirstName}}</td>
                             <td>{{a.Email}}</td>
-                            <td>{{a.Website}}</td>
+                            <!-- <td>{{a.Website}}</td> -->
                             <td>{{a.PersonalPhone}}</td>
+                            <td><button type="button" class="btn btn-secondary" data-ng-click="nextScreen($index)">To go profile</button></td>
                 </tr>
       
               </tbody>
@@ -83,8 +85,7 @@
                     <li>{{NumberOfHoses}}</li>
                     <li>{{Website}}</li>
                     <li>{{DateJoined}}</li>
-                    <li id="hideLink" style="display:none"><button type="button" class="btn btn-secondary"><a ng-href='#!profile'>To go profile</a></button></li>
- 
+                    
                   </ul>
                 </div>
               </div>
@@ -246,12 +247,24 @@
 
                   <div class="row my-row">
                     <div class="col-4 my-col">
-                      <b>Date Joined:</b>
+                      <b>Date Joined from:</b>
                     </div>
 
                     <div class="col-8 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="DateJoined">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="fromDate">
                     </div>
+                    
+                  </div>
+
+                  <div class="row my-row">
+                    <div class="col-4 my-col">
+                      <b>Date Joined to:</b>
+                    </div>
+
+                    <div class="col-8 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="toDate">
+                    </div>
+                    
                   </div>
 
                   <div class="row my-row">

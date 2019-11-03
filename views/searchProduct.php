@@ -50,12 +50,14 @@
               <tbody>
 
                 <tr ng-repeat="a in names">
-                            <th  scope="row" id="{{$index}}" data-ng-click=" yell(); name = 'deet2'; details($index)">{{a.ProductID}}</th>
+                            <th  scope="row" id="{{$index}}" ng-click="details($index)">{{a.ProductID}}</th>
                             <td>{{a.OrderNum}}</td>
                             <td>{{a.HoseType}}</td>
                             <td>{{a.CompanyName}}</td>
                             <td>{{a.TestedBy}}</td>
                             <td>{{a.testDate}}</td>
+                            <td><button type="button" class="btn btn-secondary" data-ng-click="nextScreen($index)">To go product</button></td>
+               
                            
                 </tr>
       
@@ -88,8 +90,7 @@
                     <li>{{temp}}</li>
                     <li>{{crn}}</li>
                     <li>{{inService}}</li>
-                    <li id="hideLink" style="display:none"><a ng-href='#!product' id="goToProduct">To go product screen</a></li>
- 
+                    
                   </ul>
                 </div>
               </div>
@@ -166,49 +167,66 @@
 
                   <div class="row my-row">
                     <div class="col-4 my-col">
-                      <b>Date of test:</b>
+                      <b>Date Joined from:</b>
                     </div>
 
                     <div class="col-8 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="ordernum" id="testDate">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="fromDate">
                     </div>
+                    
                   </div>
 
                   <div class="row my-row">
                     <div class="col-4 my-col">
-                      <b>Hose Pressure:</b>
+                      <b>Date Joined to:</b>
                     </div>
 
                     <div class="col-8 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="ordernum" id="Pressure">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="toDate">
                     </div>
-
-                    <!-- <div class="col-8 my-col">
-                      <select class="custom-select" id="inlineFormCustomSelect">
-                        <option selected>N/A</option>
-                        <option value="1">one</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div> -->
+                    
                   </div>
+
                   <div class="row my-row">
                     <div class="col-4 my-col">
-                      <b>Temp. Range:</b>
+                      <b>pressure from:</b>
                     </div>
 
                     <div class="col-8 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="ordernum" id="Temperature">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="fromPressure">
+                    </div>
+                    
+                  </div>
+
+                  <div class="row my-row">
+                    <div class="col-4 my-col">
+                      <b>pressure to:</b>
                     </div>
 
-                    <!-- <div class="col-8 my-col">
-                      <select class="custom-select" id="inlineFormCustomSelect">
-                        <option selected>N/A</option>
-                        <option value="1">one</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div> -->
+                    <div class="col-8 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="toPressure">
+                    </div>
+                    
+                    <div class="row my-row">
+                    <div class="col-4 my-col">
+                      <b>Temperature from:</b>
+                    </div>
+
+                    <div class="col-8 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="fromTemp">
+                    </div>
+                    
+                  </div>
+
+                  <div class="row my-row">
+                    <div class="col-4 my-col">
+                      <b>Temperature to:</b>
+                    </div>
+
+                    <div class="col-8 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="toTemp">
+                    </div>
+                    
                   </div>
                   <div class="row my-row">
                     <div class="col-4 my-col">
@@ -237,26 +255,48 @@
                       </select>
                     </div> -->
                     
+                    <div class="row my-row">
+                    <div class="col-4 my-col">
+                      <b>Length from:</b>
+                    </div>
+
+                    <div class="col-8 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="fromLength">
+                    </div>
+                    
                   </div>
 
                   <div class="row my-row">
                     <div class="col-4 my-col">
-                      <b>Hose Length:</b>
+                      <b>Length to:</b>
                     </div>
 
                     <div class="col-8 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="hoselength" id="HoseLength">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="toLength">
                     </div>
+                    
                   </div>
 
                   <div class="row my-row">
                     <div class="col-4 my-col">
-                      <b>Order Diameter:</b>
+                      <b>Diameter from:</b>
                     </div>
 
                     <div class="col-8 my-col">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="HoseDiameter">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="fromDiameter">
                     </div>
+                    
+                  </div>
+
+                  <div class="row my-row">
+                    <div class="col-4 my-col">
+                      <b>Diameter to:</b>
+                    </div>
+
+                    <div class="col-8 my-col">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Enter terms to search for" aria-label="orderdia" id="toDiameter">
+                    </div>
+                    
                   </div>
 
                   <div class="row my-row">

@@ -167,7 +167,7 @@
                   <!-- <form action="/functions/upload.php" target="_blank" method="POST" enctype="multipart/form-data"> -->
                        <input type="hidden" id="pic" name="pic" value="{{pw[0].Username}}">
                         <input type="file" name="file" id="file" class="">
-                        <button name="submit" type="submit" >Upload</button>
+                        <button name="submit" type="submit" ng-click="init()">Upload</button>
                   <!-- </form> -->
               </div>
               <!-- </form> -->

@@ -87,7 +87,7 @@ $scope.goToProduct6 = function(index){
     var Ext = document.getElementById('Ext').value; //
     var CompanyNumber = document.getElementById('CompanyNumber').value; //
     var website = document.getElementById('website').value; //
-    var pic = document.getElementById('pic').value; //
+   // var pic = document.getElementById('pic').value; //
     alert(firstName);
     $http.post("functions/addCompany.php", {'username':username, 'companyName':companyName, 'location':location, 'firstName':firstName, 'lastName':lastName, 'email':email, 'phoneNumber':phoneNumber, 'Ext':Ext, 'CompanyNumber':CompanyNumber, 'website':website, 'pic':pic}).then(function(response){  
        alert('new Company Added!');   
@@ -112,9 +112,35 @@ $scope.goToProduct6 = function(index){
     var crn = document.getElementById('crn').value; //
     var inService = document.getElementById('inService').value; //
     $http.post("functions/addProduct.php", {'productID':productID, 'PRusername':PRusername, 'customerPO':customerPO, 'orderNum':orderNum, 'part':part, 'fittings':fittings, 'testDate':testDate, 'testedBy':testedBy, 'type':type, 'pressure':pressure, 'diameter':diameter, 'length':length, 'temperature':temperature, 'crn':crn, 'inService':inService}).then(function(response){  
-       alert(response.data);   
-       $scope.names = response.data;}
-     );  
+       alert(response.data);
+    //   if(response.data == "Data Inserted"){
+    //     alert("now clear fields");
+    //  }
+    //  else {
+    //    alert("error with submitting form.  Please make sure all mandatory fields are correctl filled");
+    //  }
+
+      // alert(response.data);   
+      //  $scope.names = response.data;
+      // $scope.init()
+    });  
+
+    //  document.getElementById('productID').value=""; //
+    //  document.getElementById('PRusername').value=""; //
+    //  document.getElementById('customerPO').value="";  //
+    //  document.getElementById('orderNum').value="";
+    //  document.getElementById('part').value=""; //
+    //  document.getElementById('fittings').value=""; //
+    //  document.getElementById('testDate').value=""; //
+    //  document.getElementById('testedBy').value=""; //
+    //  document.getElementById('type').value;  //
+    //  document.getElementById('pressure').value;
+    //  document.getElementById('diameter').value; //
+    //  document.getElementById('length').value; //
+    //  document.getElementById('temperature').value; //
+    //  document.getElementById('crn').value; //
+    //  document.getElementById('inService').value; //
+
   };
 
   $scope.addHose = function(){  

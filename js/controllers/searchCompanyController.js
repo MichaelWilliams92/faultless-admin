@@ -1,4 +1,4 @@
-app.controller('searchCompanyController', function($scope, $http, transferService) {
+app.controller('searchCompanyController', function($scope, $http, $location, transferService) {
   $scope.title= "This is the main screen of the App try this";
   $scope.next= "This is the next line";
   //$scope.id = 'D432223';
@@ -35,7 +35,12 @@ app.controller('searchCompanyController', function($scope, $http, transferServic
      var CompanyPhone = "%".concat(document.getElementById('CompanyPhone').value, "%"); 
      var NumberOfHoses = "%".concat(document.getElementById('NumberOfHoses').value, "%"); 
      var Website = "%".concat(document.getElementById('Website').value, "%"); 
-     var DateJoined = "%".concat(document.getElementById('DateJoined').value, "%"); 
+
+     
+     var fromDate = document.getElementById('fromDate').value;
+     if(fromDate == "") {fromDate = "1900-01-01"};
+     var toDate = document.getElementById('toDate').value;
+     if(toDate == "") {toDate = "2099-12-30"};
 
     if (CompanyName == ""){CompanyName = "%"};
     if (Username == ""){Username = "%"};
@@ -48,9 +53,12 @@ app.controller('searchCompanyController', function($scope, $http, transferServic
     if (CompanyPhone == ""){CompanyPhone = "%"};
     if (NumberOfHoses == ""){NumberOfHoses = "%"};
     if (Website == ""){Website = "%"};
-    if (DateJoined == ""){DateJoined = "%"};
+    if (fromDate == ""){fromDate = "%"};
+    if (toDate == ""){toDate = "%"};
 
-     $http.post("functions/searchCompany.php", {'CompanyName':CompanyName, 'Username':Username, 'Location':Location, 'FirstName':FirstName, 'LastName':LastName, 'Email':Email, 'PersonalPhone':PersonalPhone, 'Ext':Ext, 'CompanyPhone':CompanyPhone, 'NumberOfHoses':NumberOfHoses, 'Website':Website, 'DateJoined':DateJoined}).then(function(response){  
+   // alert(toDate);
+
+     $http.post("functions/searchCompany.php", {'CompanyName':CompanyName, 'Username':Username, 'Location':Location, 'FirstName':FirstName, 'LastName':LastName, 'Email':Email, 'PersonalPhone':PersonalPhone, 'Ext':Ext, 'CompanyPhone':CompanyPhone, 'NumberOfHoses':NumberOfHoses, 'Website':Website, 'fromDate':fromDate, 'toDate':toDate}).then(function(response){  
          
         $scope.names = response.data;
         alert($scope.names);  }
@@ -59,6 +67,7 @@ app.controller('searchCompanyController', function($scope, $http, transferServic
   };
 
   $scope.details = function(index){
+    alert("Details have been loaded.  Please click on details tab to view info");
     $scope.CompanyName = $scope.names[index].CompanyName;
      $scope.Username = $scope.names[index].Username;
      $scope.Location = $scope.names[index].Location;
@@ -82,9 +91,17 @@ app.controller('searchCompanyController', function($scope, $http, transferServic
     }
 
      transferService.setUsername($scope.Username);
+    
     //alert($scope.names[0]);
 
   }
+
+  $scope.nextScreen = function(index){
+    transferService.setUsername($scope.names[index].Username);
+    alert(transferService.getUsername());
+    $location.path('/profile');
+  }
+
 
 });
 

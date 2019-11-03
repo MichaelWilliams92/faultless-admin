@@ -7,7 +7,7 @@ app.controller('ProfileController', function($scope, $http, $location, transferS
     // alert("re initialize everything");
     // alert($scope.names);
     //$scope.id = id;
-    $http.post("functions/selectProfile.php", {'id':transferService.getUsername()}).then(function(response){  
+    $http.post("functions/selectProfile.php", {'id':transferService.getUsername()}).then(function(response){   
       $scope.names = response.data;
      
        var x = $scope.names[0].Pic;
@@ -102,6 +102,11 @@ app.controller('ProfileController', function($scope, $http, $location, transferS
     var pw = document.getElementById('pw').value;
     var newpw = document.getElementById('newpw').value;
     var newpw2 = document.getElementById('newpw2').value;
+
+    if (newpw.length == 0 || newpw2.length == 0 || pw.length == 0){
+      alert("Password fields cannot be blank. Please fill in all password fields");
+      return;
+    }
 
     if(pw == $scope.pw[0].Pass_word && newpw == newpw2) {
 
