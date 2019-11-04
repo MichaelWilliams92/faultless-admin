@@ -2,6 +2,10 @@ app.controller('DashboardController', function($scope, $http, transferService) {
   $scope.title= "This is the main screen of the App try this";
   $scope.next= "This is the next line";
   document.getElementById("navigation").style.visibility = 'visible';
+  var hoseCount = 0;
+  var newHoseCount = 0;
+  $scope.companyCount = 0;
+  $scope.productCount = 0;
   //$scope.id = 'D432223';
 
   $scope.displayData = function(){  
@@ -14,6 +18,23 @@ app.controller('DashboardController', function($scope, $http, transferService) {
   $scope.init = function(){
     transferService.setUsername("ID432223");
     var name = transferService.getUsername();
+
+      $http.post("functions/hoseCount.php").then(function(response){  
+        hoseCount = parseInt(response.data[0].H, 10);
+       // alert(response.data[0].H);
+       //alert($scope.names1);
+      });
+       $http.post("functions/companyCount.php").then(function(response){  
+         $scope.companyCount = response.data;
+       //  alert(response.data[0].C);
+       
+        //alert($scope.names1);
+       });
+       $http.post("functions/productCount.php").then(function(response){  
+         $scope.productCount = response.data;
+        // alert(response.data[0].P);
+        //alert($scope.names1);
+       });
     
   
     $http.post("functions/selectDash.php", {'name':name}).then(function(response){  
@@ -95,6 +116,57 @@ $scope.goToProduct6 = function(index){
      );  
   };
 
+  $scope.clearCompany = function(){  
+    document.getElementById('username').value = ""; //
+    document.getElementById('CompanyName').value = "";  //
+    document.getElementById('location').value = "";   //
+    document.getElementById('firstName').value = ""; 
+    document.getElementById('lastName').value = ""; //
+    document.getElementById('email').value = ""; //
+    document.getElementById('phoneNumber').value = ""; //
+    doucment.getElementById('Ext').value = ""; 
+    document.getElementById('CompanyNumber').value = "";  //
+    document.getElementById('website').value = ""; //
+   // var pic = document.getElementById('pic').value; //
+  //   alert(firstName);
+  //   $http.post("functions/addCompany.php", {'username':username, 'companyName':companyName, 'location':location, 'firstName':firstName, 'lastName':lastName, 'email':email, 'phoneNumber':phoneNumber, 'Ext':Ext, 'CompanyNumber':CompanyNumber, 'website':website, 'pic':pic}).then(function(response){  
+  //      alert('new Company Added!');   
+  //      $scope.names = response.data;}
+  //    );  
+   };
+
+   $scope.clearHose = function(){  
+    // alert("function called");
+
+     $http.post("functions/hoseCount.php").then(function(response){  
+       newHoseCount = parseInt(response.data[0].H, 10);
+     // alert(response.data[0].H);
+    //alert($scope.names1);
+   // hoseCount = parseInt(text, 10);
+
+   //alert(newHoseCount + 1);
+
+      if(newHoseCount == hoseCount + 1){
+        alert("should remove info");
+    // //   document.getElementById('newHose').value = ""; //
+    // //   document.getElementById("file").value = "";
+     }
+
+    
+      //alert("Hose count is " + hoseCount + 1);
+      //alert("New hose count is " + newHoseCount); 
+     });
+    
+
+    
+   // var pic = document.getElementById('pic').value; //
+  //   alert(firstName);
+  //   $http.post("functions/addCompany.php", {'username':username, 'companyName':companyName, 'location':location, 'firstName':firstName, 'lastName':lastName, 'email':email, 'phoneNumber':phoneNumber, 'Ext':Ext, 'CompanyNumber':CompanyNumber, 'website':website, 'pic':pic}).then(function(response){  
+  //      alert('new Company Added!');   
+  //      $scope.names = response.data;}
+  //    );  
+   };
+
   $scope.addProduct = function(){  
     var productID = document.getElementById('productID').value; //
     var PRusername = document.getElementById('PRusername').value; //
@@ -123,6 +195,21 @@ $scope.goToProduct6 = function(index){
       // alert(response.data);   
       //  $scope.names = response.data;
       // $scope.init()
+      // document.getElementById('productID').value = ""; //
+      // document.getElementById('PRusername').value = ""; //
+      // document.getElementById('customerPO').value = "";  //
+      // document.getElementById('orderNum').value = "";
+      // document.getElementById('part').value = ""; //
+      // document.getElementById('fittings').value = "";//
+      // document.getElementById('testDate').value = "";//
+      // document.getElementById('testedBy').value = ""; //
+      // document.getElementById('type')..value = ""; //
+      // document.getElementById('pressure').value = "";
+      // document.getElementById('diameter').value = ""; //
+      // document.getElementById('length').value = "";//
+      // document.getElementById('temperature').value = "";//
+      // document.getElementById('crn').value = "";//
+      // document.getElementById('inService').value = "";//
     });  
 
     //  document.getElementById('productID').value=""; //
@@ -160,6 +247,8 @@ $scope.goToProduct6 = function(index){
        alert(response.data);   
        $scope.names = response.data;}
      );  
+
+     
   };
 
   $scope.addHose2 = function(){

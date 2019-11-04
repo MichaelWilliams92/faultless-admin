@@ -301,7 +301,8 @@
                     <div class="picture">
                         <img src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no" class="picture-src" id="wizardPicturePreview" title="">
                         <input type="file" name="file2" id="file2" class="">
-                        <button name="submit2" type="submit">Upload</button>
+                        <button name="submit2" type="submit" ng-click="clearCompany()">Upload</button>
+                        <input type="reset" value="Reset">
                     </div>
                       <b class="">Choose Picture</b>
                   </div>
@@ -405,6 +406,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <form>
             <div class="modal-body">
               <div class="row my-row">
                 <!-- <div class="col-3 my-col">
@@ -541,8 +543,10 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary">Add Another</button>
               <button type="button" class="btn btn-primary" ng-click='addProduct()'>Add</button>
+              <input type="reset" value="Reset">
             </div>
           </div>
+          </form>
         </div>
       </div>
       <!-- Modal for Adding new Hose Type -->
@@ -565,7 +569,8 @@
                         <img src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no" class="picture-src" id="wizardPicturePreview" title="">
                         <!-- <form action="/functions/upload.php" target="_blank" method="POST" enctype="multipart/form-data"> -->
                         <input type="file" name="file" id="file" class="">
-                        <button name="submit" type="submit">Upload</button>
+                        <button name="submit" type="submit" ng-click="clearHose()">Upload</button>
+                        <input type="reset" value="Reset">
                         <!-- </form> -->
                         
                     </div>
