@@ -36,7 +36,7 @@ app.controller('searchProductController', function($scope, $http, $location, tra
      $scope.customerPO = "";
      $scope.orderNum = "";
      $scope.part = "";
-    $scope.hoseType = "";
+    $scope.HoseType = "";
      $scope.fittings = "";
      $scope.testDate ="";
      $scope.testedBy = "";
@@ -115,7 +115,9 @@ app.controller('searchProductController', function($scope, $http, $location, tra
      $http.post("functions/searchProduct.php", {'ProductID':ProductID, 'Username':Username, 'CustomerPO':CustomerPO, 'OrderNum':OrderNum, 'Part':Part, 'Fittings':Fittings, 'TestedBy':TestedBy, 'HoseType':HoseType, 'fromPressure':fromPressure,'toPressure':toPressure, 'fromTemp':fromTemp, 'toTemp':toTemp, 'fromLength':fromLength, 'toLength':toLength, 'fromDiameter':fromDiameter, 'toDiameter':toDiameter, 'CRN':CRN, 'InService':InService, 'fromDate':fromDate, 'toDate':toDate}).then(function(response){  
          
         $scope.names = response.data;
-        alert($scope.names); 
+        if($scope.names == "null"){
+          alert("No results found!");
+        }  
        }
         
       );  
@@ -129,7 +131,7 @@ app.controller('searchProductController', function($scope, $http, $location, tra
       $scope.customerPO = $scope.names[index].CustomerPO;
       $scope.orderNum = $scope.names[index].OrderNum;
       $scope.part = $scope.names[index].Part;
-     $scope.hoseType = $scope.names[index].HoseType;
+     $scope.HoseType = $scope.names[index].HoseType;
       $scope.fittings = $scope.names[index].Fittings;
       $scope.testDate = $scope.names[index].testDate;
       $scope.testedBy = $scope.names[index].TestedBy;
@@ -140,23 +142,28 @@ app.controller('searchProductController', function($scope, $http, $location, tra
       $scope.crn = $scope.names[index].CRN;
       $scope.inService = $scope.names[index].InService;
      //alert("working");
-     var x = document.getElementById("hideLink");
+     
+     //var x = document.getElementById("hideLink");
      //alert("hide run");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    // if (x.style.display === "none") {
+    //   x.style.display = "block";
       
-    }
+    // }
     // } else {
     //   x.style.display = "none";
     // }
 
     //  $scope.hiddenButton = true;
 
-       transferService.setHoseType($scope.hoseType);
+
+
+       transferService.setHoseType($scope.HoseType);
        transferService.setUsername($scope.username);
        transferService.setProductID($scope.productID);
 
-       $http.post("functions/getProductPic.php", {'hoseType':$scope.hoseType}).then(function(response){  
+      
+
+       $http.post("functions/getProductPic.php", {'hoseType':$scope.HoseType}).then(function(response){  
         $scope.productPic = response.data;
         //alert("comments displayed");
         var img = $scope.productPic[0].PicURL;

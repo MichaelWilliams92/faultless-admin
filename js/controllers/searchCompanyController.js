@@ -61,7 +61,13 @@ app.controller('searchCompanyController', function($scope, $http, $location, tra
      $http.post("functions/searchCompany.php", {'CompanyName':CompanyName, 'Username':Username, 'Location':Location, 'FirstName':FirstName, 'LastName':LastName, 'Email':Email, 'PersonalPhone':PersonalPhone, 'Ext':Ext, 'CompanyPhone':CompanyPhone, 'NumberOfHoses':NumberOfHoses, 'Website':Website, 'fromDate':fromDate, 'toDate':toDate}).then(function(response){  
          
         $scope.names = response.data;
-        alert($scope.names);  }
+        if($scope.names == "null"){
+          alert("No results found!");
+        }  
+       
+        
+      
+      }
         
       );  
   };

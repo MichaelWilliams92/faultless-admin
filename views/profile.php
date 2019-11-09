@@ -38,7 +38,7 @@
           <div class="col-9 my-col">
             <div class="tab-content">
               <!-- tab one -->
-            <form name="toggle" action="/functions/uploadProfilePic.php" target="_blank" method="POST" enctype="multipart/form-data">
+            <form name="addPic" action="/functions/uploadProfilePic.php"  target="picFrame" method="POST" enctype="multipart/form-data">
             <div ng-switch="name">
 
               <div class="tab-pane active text-style" id="tab1" ng-switch-default="personal_information">
@@ -167,7 +167,8 @@
                   <!-- <form action="/functions/upload.php" target="_blank" method="POST" enctype="multipart/form-data"> -->
                        <input type="hidden" id="pic" name="pic" value="{{pw[0].Username}}">
                         <input type="file" name="file" id="file" class="">
-                        <button name="submit" type="submit" ng-click="init()">Upload</button>
+                        <button  type="submit" ng-click="uploadPic()">Upload</button>
+                        <input type="reset" value="Reset">
                   <!-- </form> -->
               </div>
               <!-- </form> -->
@@ -235,6 +236,7 @@
           </div>
         </div>
       </div>
+      <iframe name="picFrame" style="display:none"></iframe>
     </header>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

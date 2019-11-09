@@ -140,6 +140,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <form>
             <div class="modal-body">
 
                 <div class="row my-row">
@@ -179,7 +180,9 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" ng-click="update()">Update</button>
+              <input type="reset" value="Current Values">
             </div>
+            </form>
           </div>
         </div>
       </div>

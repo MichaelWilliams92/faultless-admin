@@ -87,6 +87,7 @@ app.controller('ProductController', function($scope, $http, transferService) {
     });
 
     transferService.setProductID($scope.productID);
+    document.getElementById('Comment').value="";
 
   }
 
@@ -95,9 +96,17 @@ app.controller('ProductController', function($scope, $http, transferService) {
     var productID = $scope.productID;
 
     $http.post("functions/addComment.php", {'productID':productID, 'Comment':Comment}).then(function(response){  
+     alert(response.data);
       $scope.comments = response.data;
+      
+      //if currentIndex is undefined, just rerun the init function
+      if(!$scope.currentIndex){
+        $scope.init();
+      } else {
       $scope.details($scope.currentIndex);
+      }
       document.getElementById('Comment').value="";
+      
     });
   }
 

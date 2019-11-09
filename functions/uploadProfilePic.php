@@ -1,4 +1,4 @@
-<?php  
+<?php
  //insert.php  
 //  $connect = mysqli_connect("localhost", "root", "20152maW", "Faultless");  
 //  $data = json_decode(file_get_contents("php://input"));  
@@ -7,7 +7,7 @@
 
 $img = "";
 
-if(isset($_POST['submit'])){
+//if(isset($_POST['submit'])){
     $file = $_FILES['file'];
     $username = $_REQUEST['pic'];
    //echo($username);
@@ -39,15 +39,25 @@ if(isset($_POST['submit'])){
                        // $Username = mysqli_real_escape_string($connect, $data->Username); 
                        // $Pic = mysqli_real_escape_string($connect, $data->Pic);           
                     
-                            $query = "UPDATE company SET Pic = '$img' WHERE Username = '$username'";  
-                            if(mysqli_query($connect, $query))  
-                            {  
-                                echo "Data Inserted...";  
-                            }  
-                            else  
-                            {  
-                                    echo 'Error';  
-                            }  
+                            $sql = "UPDATE company SET Pic = ? WHERE Username = ?";  
+                            // if(mysqli_query($connect, $query))  
+                            // {  
+                            //     echo "Data Inserted...";  
+                            // }  
+                            // else  
+                            // {  
+                            //         echo 'Error';  
+                            // }
+                            
+                            $stmt = mysqli_stmt_init($connect);
+                            if(!mysqli_stmt_prepare($stmt, $sql)){
+                                  echo "SQL statement failed!";
+                             } else {
+                                  mysqli_stmt_bind_param($stmt, "ss", $img, $username);
+                                  $result = mysqli_stmt_execute($stmt);
+                                  echo "$result";
+                                
+                             }
                             
                    // }  
 
@@ -63,7 +73,7 @@ if(isset($_POST['submit'])){
     } else {
         echo "You cannot upload files of this type!";
     }
-}
+//}
 //echo "image uploaded fine!";
 
 ?>

@@ -8,17 +8,29 @@
       $LastName = mysqli_real_escape_string($connect, $data->LastName);  
       $PersonalPhone = mysqli_real_escape_string($connect, $data->PersonalPhone);       
       $Ext = mysqli_real_escape_string($connect, $data->Ext); 
-      $Email = mysqli_real_escape_string($connect, $data->Email);       
+      $Email = mysqli_real_escape_string($connect, $data->Email);      
+      $id = mysqli_real_escape_string($connect, $data->id);      
  
-           $query = "UPDATE company SET FirstName = '$FirstName', LastName = '$LastName', PersonalPhone = '$PersonalPhone', Ext = '$Ext', Email = '$Email' WHERE Username = 'ID432223'";  
-           if(mysqli_query($connect, $query))  
-           {  
-                echo 'Data Updated...';  
-           }  
-           else  
-           {  
-                echo 'Error';  
-           }  
+           $sql = "UPDATE company SET FirstName = ?, LastName = ?, PersonalPhone = ?, Ext = ?, Email = ? WHERE Username = '$id'";  
+          //  if(mysqli_query($connect, $query))  
+          //  {  
+          //       echo 'Data Updated...';  
+          //  }  
+          //  else  
+          //  {  
+          //       echo 'Error';  
+          //  } 
+           
+           $stmt = mysqli_stmt_init($connect);
+           if(!mysqli_stmt_prepare($stmt, $sql)){
+                 echo "SQL statement failed!";
+            } else {
+                 mysqli_stmt_bind_param($stmt, "sssss", $FirstName, $LastName, $PersonalPhone, $Ext, $Email);
+                 $result = mysqli_stmt_execute($stmt);
+                 echo "$result";
+               
+            }
+         
         
  }  
  ?>  

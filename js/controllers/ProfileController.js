@@ -42,9 +42,11 @@ app.controller('ProfileController', function($scope, $http, $location, transferS
     var Ext = document.getElementById('Ext').value;
     var Email = document.getElementById('Email').value;
 
-    $http.post("functions/UpdatePersonal.php", {'FirstName':FirstName, 'LastName':LastName, 'PersonalPhone':PersonalPhone, 'Ext':Ext, 'Email':Email}).then(function(response){  
+
+    $http.post("functions/UpdatePersonal.php", {'id':transferService.getUsername(), 'FirstName':FirstName, 'LastName':LastName, 'PersonalPhone':PersonalPhone, 'Ext':Ext, 'Email':Email}).then(function(response){  
       $scope.names = response.data;
      //alert($scope.names);
+     alert("Personal information section has been updated!");
 
      $scope.init();
      //alert("init works!");
@@ -52,6 +54,43 @@ app.controller('ProfileController', function($scope, $http, $location, transferS
     })
 
   };
+
+  $scope.uploadPic = function() {
+    var allowed = ['jpg', 'jpeg', 'png'];
+    var username = document.getElementById('pic').value;
+
+    if(document.getElementById("file").files.length == 0) {
+      alert("File not selected.  Please select file before uploading");
+    } else {
+
+      var fileName = document.getElementById("file").files[0].name;
+      var fileSize = document.getElementById("file").files[0].size;
+
+      if(fileSize > 1000000){
+        alert("File is too big!");
+        return;
+      }
+  
+      var ext2 = fileName.split('.');
+      var ext = ext2[ext2.length-1].toLowerCase();
+      img = "Profile_".concat(username,".", ext);
+  
+      if(!allowed.includes(ext)){
+        alert("Sorry, that type of file is not accepted.  Please enter jpg, jpeg, or png files only!");
+        return;
+      }
+
+      //upload pic now
+      alert(img);
+      document.addPic.submit();
+      alert("Profile pic uploaded successfully!  You will see changes the next time you login");
+
+    }
+
+  }
+
+
+
   
   //updateCompany php needs to be updates, currently the username is fixed
   $scope.updateCompanyInfo = function(){
@@ -64,6 +103,7 @@ app.controller('ProfileController', function($scope, $http, $location, transferS
 
     $http.post("functions/updateCompany.php", {'Username':username, 'CompanyName':CompanyName, 'Location':Location, 'CompanyPhone':CompanyPhone, 'Website':Website, 'DateJoined':DateJoined}).then(function(response){  
       $scope.names = response.data;
+      alert("Company information section has been updated!");
     // alert($scope.names);
 
     $scope.init();

@@ -11,15 +11,26 @@
       $DateJoined = mysqli_real_escape_string($connect, $data->DateJoined);    
       $Username = mysqli_real_escape_string($connect, $data->Username);    
  
-           $query = "UPDATE company SET CompanyName = '$CompanyName', Location = '$Location', CompanyPhone = '$CompanyPhone', Website = '$Website', DateJoined = '$DateJoined' WHERE Username = '$Username'";  
-           if(mysqli_query($connect, $query))  
-           {  
-                echo 'Data Updated...';  
-           }  
-           else  
-           {  
-                echo 'Error';  
-           }  
+           $sql = "UPDATE company SET CompanyName = ?, Location = ?, CompanyPhone = ?, Website = ?, DateJoined = ? WHERE Username = ?";  
+          //  if(mysqli_query($connect, $query))  
+          //  {  
+          //       echo 'Data Updated...';  
+          //  }  
+          //  else  
+          //  {  
+          //       echo 'Error';  
+          //  }  
+
+           $stmt = mysqli_stmt_init($connect);
+           if(!mysqli_stmt_prepare($stmt, $sql)){
+                 echo "SQL statement failed!";
+            } else {
+                 mysqli_stmt_bind_param($stmt, "ssssss", $CompanyName, $Location, $CompanyPhone, $Website, $DateJoined, $Username);
+                 $result = mysqli_stmt_execute($stmt);
+                 echo "$result";
+               
+            }
+         
         
  }  
  ?>  

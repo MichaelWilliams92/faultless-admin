@@ -332,7 +332,7 @@
                   <div class="row my-row">
 
                     <div class="col-8 my-col">
-                      <button type="button" name="details" class="btn btn-secondary" ng-click="searchProduct(); name='deet'">Search</button>
+                      <button type="button" name="details" class="btn btn-secondary" ng-click="searchProduct()">Search</button>
                     </div>
                   </div>
 
